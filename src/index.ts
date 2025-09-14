@@ -18,3 +18,16 @@ debugger;
   }
   return "Unknown type";
 }
+
+
+
+function add(a:number[]){
+  return a;
+}
+function addRest(...a:number[]){
+  return a;
+}
+
+
+add([1,2,4,5,]);
+addRest(1,2,3,4,5)
