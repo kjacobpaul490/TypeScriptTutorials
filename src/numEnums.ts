@@ -4,12 +4,12 @@ import promptSync from 'prompt-sync';
 const prompt = promptSync();
 
 enum months {
-    jan = 1,
-    feb = 2,
-    mar = 3,
-    aprl = 4,
-    may = 5,
-    june = 6,
+    jan = 10,
+    feb = 20,
+    mar = 30,
+    aprl = 40,
+    may = 50,
+    june = 65,
     july = 7,
     aug = 8,
     sept = 9,

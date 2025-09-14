@@ -15,7 +15,7 @@ function printNames() {
     console.log("Enter user details");
     let name:string = prompt("Enter a name: ");
     if (name === "exit") {
-        console.log(userDetails.flat());
+        console.log(userDetails);
     }
     else {
         let age:number = parseInt(prompt("Enter age: "));

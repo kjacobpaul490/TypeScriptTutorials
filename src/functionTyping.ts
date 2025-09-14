@@ -247,7 +247,8 @@ interface User {
 type UserValidator = (user: User) => boolean;
 type UserProcessor = (user: User) => string;
 
-function validateUser(user: User): boolean {
+function 
+(user: User): boolean {
     return user.id > 0 && user.name.length > 0 && user.email.includes("@");
 }
 

@@ -15,6 +15,7 @@ enum ageCategory {
  * @returns 
  */
 function getCategoryDetails( _ageCategory:ageCategory) {
+    debugger;
     switch (_ageCategory) {
         case ageCategory.Child:
             return "The age is between 0 and 12 " + _ageCategory;
