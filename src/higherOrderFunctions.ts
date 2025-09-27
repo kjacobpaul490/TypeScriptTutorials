@@ -6,11 +6,6 @@
 
 // Define callback function types
 type StringCallback = (str: string) => void;
-type NumberCallback = (num: number) => void;
-type BooleanCallback = (bool: boolean) => void;
-
-// Generic callback type
-type Callback<T> = (value: T) => void;
 
 // ============================================================================
 // 2. Higher-Order Functions with Callbacks
@@ -40,7 +35,10 @@ const customMap = <T, U>(
 ): U[] => {
     const result: U[] = [];
     for (let i = 0; i < array.length; i++) {
-        result.push(callback(array[i], i));
+        const item = array[i];
+        if (item !== undefined) {
+            result.push(callback(item, i));
+        }
     }
     return result;
 };
@@ -52,8 +50,9 @@ const customFilter = <T>(
 ): T[] => {
     const result: T[] = [];
     for (let i = 0; i < array.length; i++) {
-        if (predicate(array[i], i)) {
-            result.push(array[i]);
+        const item = array[i];
+        if (item !== undefined && predicate(item, i)) {
+            result.push(item);
         }
     }
     return result;
@@ -67,7 +66,10 @@ const customReduce = <T, U>(
 ): U => {
     let accumulator = initialValue;
     for (let i = 0; i < array.length; i++) {
-        accumulator = reducer(accumulator, array[i], i);
+        const item = array[i];
+        if (item !== undefined) {
+            accumulator = reducer(accumulator, item, i);
+        }
     }
     return accumulator;
 };
@@ -242,6 +244,9 @@ const debouncedLog = debounce((message: string) => {
     console.log(`Debounced: ${message}`);
 }, 1000);
 
+// Use the debounced function
+debouncedLog("This message will be debounced");
+
 // Example 4: Using event emitter
 const eventEmitter = new TypedEventEmitter();
 
@@ -282,10 +287,10 @@ const fetchData = async (): Promise<string> => {
     }
 };
 
-// Uncomment to test retry functionality
-// retryWithBackoff(fetchData, 3, 1000)
-//     .then(result => console.log("Retry result:", result))
-//     .catch(error => console.error("All retries failed:", error));
+// Test retry functionality
+retryWithBackoff(fetchData, 3, 1000)
+    .then(result => console.log("Retry result:", result))
+    .catch(error => console.error("All retries failed:", error));
 
 export {
     executeCallback,
